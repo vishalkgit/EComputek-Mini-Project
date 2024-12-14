@@ -1,0 +1,74 @@
+﻿@model EComputek.Models.Product
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Product</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+           @*  <div class="form-group">
+                <label asp-for="Product_id" class="control-label"></label>
+                <input asp-for="Product_id" class="form-control" />
+                <span asp-validation-for="Product_id" class="text-danger"></span>
+            </div> *@
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StockQuantity" class="control-label"></label>
+                <input asp-for="StockQuantity" class="form-control" />
+                <span asp-validation-for="StockQuantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Imageurl" class="control-label"></label>
+                <input type="file" name="file" class="form-control" />
+                <span asp-validation-for="Imageurl" class="text-danger"></span>
+            </div>
+               @* <div class="form-group">
+                  <label asp-for="categoryid" class="control-label"></label>
+                  <select class="form-control"  asp-for="categoryid" asp-items="@(new SelectList(ViewBag.Categories,"categoryid","name"))"></select>
+                  <span asp-validation-for="categoryid" class="text-danger"></span>
+              </div> *@
+               <div class="form-group">
+                <label asp-for="name" class="control-label"></label>
+                <select class="form-control" asp-for="categoryid" asp-items="@(new SelectList(ViewBag.Category,"categoryid","name"))"></select>
+                <span asp-validation-for="name" class="text-danger"></span>
+            </div>  
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<p style="color:red">
+    @ViewBag.Error
+</p>
+  <div>
+      <a asp-action="Index">Back To List</a>
+  </div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+
