@@ -15,7 +15,7 @@ namespace EComputek.Repositories
         public int AddUser(Registeration user)
         {
             int result = 0;
-            db.Registrations.Add(user);
+            db.Registerations.Add(user);
             result = db.SaveChanges();
             return result;
         }
@@ -24,10 +24,10 @@ namespace EComputek.Repositories
         {
 
             int result = 0;
-            var res = db.Registrations.Where(x => x.Userid == id).FirstOrDefault();
+            var res = db.Registerations.Where(x => x.Userid == id).FirstOrDefault();
             if (res != null)
             {
-                db.Registrations.Remove(res);
+                db.Registerations.Remove(res);
                 result = db.SaveChanges();
             }
             return result;
@@ -35,23 +35,23 @@ namespace EComputek.Repositories
 
         public IEnumerable<Registeration> GetAllUser()
         {
-            return db.Registrations.ToList();
+            return db.Registerations.ToList();
         }
 
         public Registeration GetById(int id)
         {
-            return db.Registrations.Where(x => x.Userid == id).SingleOrDefault();
+            return db.Registerations.Where(x => x.Userid == id).SingleOrDefault();
         }
 
         public Registeration Login(string email, string password)
         {
-            return db.Registrations.Where(x => x.Email == email && x.Password == password).FirstOrDefault();
+            return db.Registerations.Where(x => x.Email == email && x.Password == password).FirstOrDefault();
         }
 
         public int UpdateUser(Registeration user)
         {
             int result = 0;
-            var res = db.Registrations.Where(x => x.Userid == user.Userid).FirstOrDefault();
+            var res = db.Registerations.Where(x => x.Userid == user.Userid).FirstOrDefault();
             if (res != null)
             {
                 res.Userid = user.Userid;

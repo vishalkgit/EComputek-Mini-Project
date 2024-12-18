@@ -4,63 +4,46 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<div class="container">
+    <div class="row align-items-center">
+        <h3 class="mb-3 text-center">@Model.Name</h3>
+        <!-- Image Section -->
+        <div class="col-md-4 text-center">
+            <img src="@Url.Content(Model.Imageurl)" class="img-fluid rounded" alt="Product Image" style="max-height: 800px;max-width:400px; object-fit: cover;">
+        </div>
 
-<div>
-    <h4>Product</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Productid)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Productid)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.StockQuantity)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.StockQuantity)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Imageurl)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Imageurl)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.categoryid)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.categoryid)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.name)
-        </dd>
-    </dl>
+        <!-- Details Section -->
+        <div class="col-md-8">
+
+            <dl class="row">
+                <dt class="col-sm-4">Description</dt>
+                <dd class="col-sm-8">@Model.Description</dd>
+
+                <dt class="col-sm-4">Price</dt>
+                <dd class="col-sm-8"><b>₹ @Model.Price </b></dd>
+
+                <dt class="col-sm-4">Stock</dt>
+                <dd class="col-sm-8">@Model.StockQuantity</dd>
+
+                <dt class="col-sm-4">Category</dt>
+                <dd class="col-sm-8">@Model.name</dd>
+
+                <dt class="col-sm-4">Category ID</dt>
+                <dd class="col-sm-8">@Model.categoryid</dd>
+
+                @if (!string.IsNullOrEmpty(HttpContextAccessor.HttpContext.Session.GetString("Admin")) || !string.IsNullOrEmpty(HttpContextAccessor.HttpContext.Session.GetString("Customer")))
+                {
+                    <dt>
+                        @Html.ActionLink("Add To Cart", "AddToCart", "Cart", new { productId = Model.Productid }, new { @class = "btn btn-sm btn-warning w-60 text-center" }) <br />
+
+                    </dt>
+                }
+            </dl>
+
+        </div>
+    </div>
 </div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
+
+<div class="mt-4">
+    <a class="btn btn-secondary" asp-action="DisplayProduct"> <strong>Back </strong></a>
 </div>

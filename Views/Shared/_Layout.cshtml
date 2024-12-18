@@ -12,7 +12,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">EComputek</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/HomePageImages/E-Computek (3).png" height="30px" width="80px" alt="Alternate Text" /></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -65,10 +65,32 @@
                         }
                         @if (!string.IsNullOrEmpty(HttpContextAccessor.HttpContext.Session.GetString("Admin")) || !string.IsNullOrEmpty(HttpContextAccessor.HttpContext.Session.GetString("Customer")))
                         {
+                            @if (!string.IsNullOrEmpty(HttpContextAccessor.HttpContext.Session.GetString("Admin")))
+                            {
+
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark">
+                                         Welcome <strong>  @HttpContextAccessor.HttpContext.Session.GetString("Admin") </strong> 
+                                    </a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark">
+                                         Welcome <strong>@HttpContextAccessor.HttpContext.Session.GetString("Customer")  </strong>
+                                    </a>
+                                </li>
+                            }
+
+
+
                             <li class="nav-item">
                                 <a class="nav-link text-dark btn-outline-danger" asp-area="" asp-controller="DisplayProducts" asp-action="DisplayProduct">Products</a>
                             </li>
-
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="Index">Cart</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark btn-outline-danger" asp-area="" asp-controller="Register" asp-action="Logout">Logout</a>
                             </li>
@@ -85,9 +107,9 @@
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - EComputek - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
+         <div class="container">
+             &copy; 2024 - EComputek - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+         </div> 
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
